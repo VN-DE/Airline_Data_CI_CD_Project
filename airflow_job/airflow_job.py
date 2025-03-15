@@ -76,9 +76,9 @@ with DAG(
         },
         "environment_config": {
             "execution_config": {
-                "service_account": "70622048644-compute@developer.gserviceaccount.com",
-                "network_uri": "projects/psyched-service-442305-q1/global/networks/default",
-                "subnetwork_uri": "projects/psyched-service-442305-q1/regions/us-central1/subnetworks/default",
+                "service_account": "315169430143-compute@developer.gserviceaccount.com",
+                "network_uri": "projects/sincere-venture-445815-s9/global/networks/default",
+                "subnetwork_uri": "projects/sincere-venture-445815-s9/regions/us-central1/subnetworks/default",
             }
         },
     }
