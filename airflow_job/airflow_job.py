@@ -197,6 +197,7 @@ with DAG(
         project_id="sincere-venture-445815-s9",
         cluster_name=batch_id,
         region="asia-south2",
+        ignore_if_missing=True,  # Prevent failure if cluster is missing
         trigger_rule=TriggerRule.ALL_DONE,  # Delete the cluster even if the job fails
     )
 
