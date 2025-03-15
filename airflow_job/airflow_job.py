@@ -172,6 +172,7 @@ with DAG(
         "placement": {"cluster_name": batch_id},
         "pyspark_job": {
             "main_python_file_uri": f"gs://{gcs_bucket}/airflow-project-1/spark-job/spark_transformation_job.py",
+            'jar_file_uris': ['gs://spark-lib/bigquery/spark-bigquery-latest_2.12.jar'],
             "args": [
                 f"--env={env}",
                 f"--bq_project={bq_project}",
