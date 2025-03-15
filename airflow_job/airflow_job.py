@@ -67,11 +67,11 @@ with DAG(
             "version": "2.2",
             "properties": {
                 # Reduce executor memory and cores to fit within your quota
-                "spark:spark.executor.instances": "2",
-                "spark:spark.executor.cores": "2",
-                "spark:spark.executor.memory": "2g",
-                "spark:spark.driver.cores": "2",
-                "spark:spark.driver.memory": "2g"
+                "spark.executor.instances": "2",
+                "spark.executor.cores": "2",
+                "spark.executor.memory": "2g",
+                "spark.driver.cores": "2",
+                "spark.driver.memory": "2g"
             }
         },
         "environment_config": {
