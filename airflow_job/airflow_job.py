@@ -70,7 +70,7 @@ with DAG(
                 "spark.executor.instances": "2",
                 "spark.executor.cores": "4",
                 "spark.executor.memory": "2g",
-                "spark.driver.cores": "2",
+                "spark.driver.cores": "4",
                 "spark.driver.memory": "2g"
             }
         },
