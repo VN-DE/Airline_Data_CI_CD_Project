@@ -136,7 +136,7 @@ with DAG(
         task_id="create_dataproc_cluster",
         project_id="sincere-venture-445815-s9",
         cluster_name=batch_id,
-        region="asia-south2",
+        region="us-central1",
         cluster_config={
             "master_config": {
                 "num_instances": 1,
@@ -186,7 +186,7 @@ with DAG(
     submit_pyspark_job = DataprocSubmitJobOperator(
         task_id="submit_pyspark_job",
         project_id="sincere-venture-445815-s9",
-        region="asia-south2",
+        region="us-central1",
         job=pyspark_job,
         gcp_conn_id="google_cloud_default"
     )
@@ -196,7 +196,7 @@ with DAG(
         task_id="delete_dataproc_cluster",
         project_id="sincere-venture-445815-s9",
         cluster_name=batch_id,
-        region="asia-south2",
+        region="us-central1",
         trigger_rule=TriggerRule.ALL_DONE,  # Delete the cluster even if the job fails
     )
 
