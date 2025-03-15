@@ -51,9 +51,9 @@ with DAG(
     # Task 2: Submit PySpark job to Dataproc Serverless
     batch_details = {
         "pyspark_batch": {
-            "main_python_file_uri": f"gs://{gcs_bucket}/airflow-project-1/spark-job/spark_transformation_job.py",  # Main Python file
-            "python_file_uris": [],  # Python WHL files
-            "jar_file_uris": [],  # JAR files
+            "main_python_file_uri": f"gs://{gcs_bucket}/airflow-project-1/spark-job/spark_transformation_job.py",
+            "python_file_uris": [],
+            "jar_file_uris": [],
             "args": [
                 f"--env={env}",
                 f"--bq_project={bq_project}",
@@ -64,25 +64,58 @@ with DAG(
             ]
         },
         "runtime_config": {
-            "version": "2.2",  # Specify Dataproc version (if needed)
+            "version": "2.2",
+            "properties": {
+                # Reduce executor memory and cores to fit within your quota
+                "spark:spark.executor.instances": "2",
+                "spark:spark.executor.cores": "2",
+                "spark:spark.executor.memory": "2g",
+                "spark:spark.driver.cores": "2",
+                "spark:spark.driver.memory": "2g"
+            }
         },
         "environment_config": {
             "execution_config": {
-                "service_account": "315169430143-compute@developer.gserviceaccount.com",
-                "network_uri": "projects/sincere-venture-445815-s9/global/networks/default",
-                "subnetwork_uri": "projects/sincere-venture-445815-s9/regions/us-central1/subnetworks/default",
+                "service_account": "70622048644-compute@developer.gserviceaccount.com",
+                "network_uri": "projects/psyched-service-442305-q1/global/networks/default",
+                "subnetwork_uri": "projects/psyched-service-442305-q1/regions/us-central1/subnetworks/default",
             }
         },
-        "compute_config": {
-            "scaling_config": {
-                "worker_count": 2,  # Minimum number of workers
-                "max_worker_count": 4  # Maximum number of workers
-            },
-            "worker_config": {
-                "machine_type": "n1-standard-2"  # Smaller machine type with 2 vCPUs
-            }
-        }
     }
+    # batch_details = {
+    #     "pyspark_batch": {
+    #         "main_python_file_uri": f"gs://{gcs_bucket}/airflow-project-1/spark-job/spark_transformation_job.py",  # Main Python file
+    #         "python_file_uris": [],  # Python WHL files
+    #         "jar_file_uris": [],  # JAR files
+    #         "args": [
+    #             f"--env={env}",
+    #             f"--bq_project={bq_project}",
+    #             f"--bq_dataset={bq_dataset}",
+    #             f"--transformed_table={transformed_table}",
+    #             f"--route_insights_table={route_insights_table}",
+    #             f"--origin_insights_table={origin_insights_table}",
+    #         ]
+    #     },
+    #     "runtime_config": {
+    #         "version": "2.2",  # Specify Dataproc version (if needed)
+    #     },
+    #     "environment_config": {
+    #         "execution_config": {
+    #             "service_account": "315169430143-compute@developer.gserviceaccount.com",
+    #             "network_uri": "projects/sincere-venture-445815-s9/global/networks/default",
+    #             "subnetwork_uri": "projects/sincere-venture-445815-s9/regions/us-central1/subnetworks/default",
+    #         }
+    #     },
+    #     "compute_config": {
+    #         "scaling_config": {
+    #             "worker_count": 2,  # Minimum number of workers
+    #             "max_worker_count": 4  # Maximum number of workers
+    #         },
+    #         "worker_config": {
+    #             "machine_type": "n1-standard-2"  # Smaller machine type with 2 vCPUs
+    #         }
+    #     }
+    # }
 
     pyspark_task = DataprocCreateBatchOperator(
         task_id="run_spark_job_on_dataproc_serverless",
