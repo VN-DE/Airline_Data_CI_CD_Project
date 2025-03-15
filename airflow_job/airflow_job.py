@@ -5,6 +5,7 @@ from airflow.providers.google.cloud.operators.dataproc import DataprocCreateClus
 from airflow.providers.google.cloud.operators.dataproc import DataprocDeleteClusterOperator
 from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
 from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor
+from airflow.utils.trigger_rule import TriggerRule
 from airflow.models import Variable
 
 # DAG default arguments
