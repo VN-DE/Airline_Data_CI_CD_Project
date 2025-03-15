@@ -73,6 +73,15 @@ with DAG(
                 "subnetwork_uri": "projects/sincere-venture-445815-s9/regions/us-central1/subnetworks/default",
             }
         },
+        "compute_config": {
+            "scaling_config": {
+                "worker_count": 2,  # Minimum number of workers
+                "max_worker_count": 4  # Maximum number of workers
+            },
+            "worker_config": {
+                "machine_type": "n1-standard-2"  # Smaller machine type with 2 vCPUs
+            }
+        }
     }
 
     pyspark_task = DataprocCreateBatchOperator(
